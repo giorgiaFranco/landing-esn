@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>ESN Goodie Bag</title>
+<style>
+body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif}
+.container{width:480px;margin:45px auto;text-align:center}
+.logo{width:130px;margin-bottom:20px}
+h1{font-size:28px;line-height:1;margin:0 0 18px;font-weight:900}
+p{font-size:16px;line-height:1.4}
+label{display:block;text-align:left;font-weight:bold;margin:22px 0 8px;font-size:18px}
+input[type=email],input[type=text]{width:100%;height:54px;font-size:18px;box-sizing:border-box}
+.checkbox-row{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:18px}
+.checkbox-row input{width:22px;height:22px}
+button{margin-top:30px;width:100%;height:56px;border:0;border-radius:50px;background:rgb(221,43,44);color:#fff;font-size:18px;font-weight:bold}
+.footer{margin-top:25px;font-size:12px;line-height:1.5}
+.footer a{color:rgb(106,201,231)}
+</style>
+</head>
+<body>
+<div class="container">
+<img class="logo" src="https://d3k81ch9hvuctc.cloudfront.net/company/RXHQa6/images/e95da67b-21b0-49e3-a51d-ab0fe78d05b5.png">
+<h1>RITIRA LA TUA<br>GOODIE BAG!</h<p>Inserisci i tuoi dati per iscriverti alla newsletter ESN e ritira la tua goodie bag gratuita — avrai anche il <b>20% di sconto</b> sul tuo primo ordine.</p>
+
+<form action="success.html" method="GET">
+<label>Indirizzo email <span style="color:red">*</email" required>
+
+<label>Password <span style="color:red">*</span></label>
+<input type="text" name="password" required>
+
+<label>Nome (opzionale)</label>
+<input type="text" name="nome">
+
+<label>Voglio ricevere la newsletter ESN, offerte e aggiornamenti via email. <span style="color:red">*</span></label>
+<div class="checkbox-row"><input type="checkbox" name="consenso" value="si" required><span>Sì, acconsento</span></div>
+<button type="submit">ISCRIVITI</button>
+</form>
+<div class="footer">Rispettiamo la tua privacy. Puoi cancellare l'iscrizione in qualsiasi momento.<br>Consulta la nostra <a href="https://it.esn.com/policies/privacy-policy">Informativa sulla privacy</a></div>
+</div>
+</body>
+</html>

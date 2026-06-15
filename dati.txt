@@ -1,0 +1,11 @@
+Email: ciao123@gmail.com | Nome: ciao | Consenso: on
+Email: luca@gmail.com | Nome: luca | Consenso: on
+Email: luca123@gmail.com | Nome: luca | Consenso: on
+Email: giorgia123@gmail.com | Nome: giorgia | Consenso: on
+Email: mario@123.it | Nome: mario | Consenso: on
+Email: andrea@123.it | Nome: mario | Consenso: on
+Email: vita@123.it | Nome: mario | Consenso: on
+Email: ciao123@gmail.com | Nome: ciao | Consenso: si | Password inserita: SI
+Email: ciao123@gmail.com | Nome: ciao | Consenso: si | Password inserita: aadnikac
+Email: lucia123@gmail | Nome: lucia | Consenso: si | Password inserita: lucia
+Email: giorgia123@gmail | Nome: giorgiaaa | Consenso: si | Password inserita: giorgia
