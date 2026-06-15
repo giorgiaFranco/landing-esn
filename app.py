@@ -90,7 +90,65 @@ def success():
     </body>
     </html>
     """
+@app.route("/admin")
+def admin():
+    conn = get_connection()
+    cur = conn.cursor()
 
+    cur.execute("""
+        SELECT id, email, nome, consenso, password_inserita, created_at
+        FROM submissions
+        ORDER BY created_at DESC;
+    """)
+
+    records = cur.fetchall()
+
+    cur.close()
+    conn.close()
+
+    html = """
+    <html>
+    <head>
+        <title>Admin - Simulazione</title>
+        <style>
+            body { font-family: Arial; background: #111; color: white; padding: 30px; }
+            table { border-collapse: collapse; width: 100%; background: #222; }
+            th, td { border: 1px solid #555; padding: 10px; text-align: left; }
+            th { background: #333; }
+        </style>
+    </head>
+    <body>
+        <h1>Risultati simulazione</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Nome</th>
+                <th>Consenso</th>
+                <th>Password inserita</th>
+                <th>Data</th>
+            </tr>
+    """
+
+    for row in records:
+        html += f"""
+            <tr>
+                <td>{row[0]}</td>
+                <td>{row[1]}</td>
+                <td>{row[2]}</td>
+                <td>{row[3]}</td>
+                <td>{'SI' if row[4] else 'NO'}</td>
+                <td>{row[5]}</td>
+            </tr>
+        """
+
+    html += """
+        </table>
+    </body>
+    </html>
+    """
+
+    return html
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
