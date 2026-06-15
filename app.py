@@ -1,32 +1,74 @@
 from flask import Flask, render_template, request, redirect, url_for
+import os
+import psycopg2
+from datetime import datetime
 
 app = Flask(__name__)
 
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+def get_connection():
+    return psycopg2.connect(DATABASE_URL)
+
+def init_db():
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS submissions (
+            id SERIAL PRIMARY KEY,
+            email TEXT,
+            nome TEXT,
+            consenso TEXT,
+            password_inserita BOOLEAN,
+            created_at TIMESTAMP
+        );
+    """)
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
 @app.route("/")
 def home():
+    init_db()
     return render_template("esnPage.html")
 
 
 @app.route("/submit", methods=["POST"])
 def submit():
+
     email = request.form.get("email")
     nome = request.form.get("nome")
     consenso = request.form.get("consenso")
-    password_inserita = request.form.get("password")
+    password = request.form.get("password")
 
-    with open("dati.txt", "a") as f:
-        f.write(
-            f"Email: {email} | "
-            f"Nome: {nome} | "
-            f"Consenso: {consenso} | "
-            f"Password inserita: {password_inserita}\n"
-        )
+    password_inserita = True if password else False
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("""
+        INSERT INTO submissions
+        (email, nome, consenso, password_inserita, created_at)
+        VALUES (%s, %s, %s, %s, %s)
+    """, (
+        email,
+        nome,
+        consenso,
+        password_inserita,
+        datetime.now()
+    ))
+
+    conn.commit()
+    cur.close()
+    conn.close()
 
     print("\n=== DATI RICEVUTI NELLA SIMULAZIONE ===")
     print("Email:", email)
     print("Nome:", nome)
     print("Consenso:", consenso)
-    print("Password inserita:", "SI" if password_inserita else "NO")
+    print("Password inserita:", password_inserita)
 
     return redirect(url_for("success"))
 
